@@ -9,6 +9,12 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { RegisterComponent } from './components/register/register.component';
+import { MemberListComponent } from './components/member-list/member-list.component';
+import { MemberDetailComponent } from './components/member-detail/member-detail.component';
+import { ListComponent } from './components/list/list.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './_modules/shared.module';
 
 
 @NgModule({
@@ -16,7 +22,11 @@ import { RegisterComponent } from './components/register/register.component';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    MemberListComponent,
+    MemberDetailComponent,
+    ListComponent,
+    MessagesComponent
  
   ],
   imports: [
@@ -25,8 +35,9 @@ import { RegisterComponent } from './components/register/register.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot()
-  ],
+    SharedModule,
+   
+  ], 
   providers: [],
   bootstrap: [AppComponent]
 })
