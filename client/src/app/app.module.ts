@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,9 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './_modules/shared.module';
 import { TestErrorsComponent } from './_errors/test-errors/test-errors.component';
+import { ErrorInterceptor } from './_interceptor/error.interceptor';
+import { NotFoundComponent } from './_errors/not-found/not-found.component';
+import { ServerErrorComponent } from './_errors/server-error/server-error.component';
 
 
 @NgModule({
@@ -28,7 +31,9 @@ import { TestErrorsComponent } from './_errors/test-errors/test-errors.component
     MemberDetailComponent,
     ListComponent,
     MessagesComponent,
-    TestErrorsComponent
+    TestErrorsComponent,
+    NotFoundComponent,
+    ServerErrorComponent
  
   ],
   imports: [
@@ -40,7 +45,9 @@ import { TestErrorsComponent } from './_errors/test-errors/test-errors.component
     SharedModule,
    
   ], 
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
