@@ -26,7 +26,7 @@ namespace API
             }
             catch(Exception ex) {
                 var logger = services.GetRequiredService<ILogger<Program>>();
-                logger.LogError(ex, "An error occured during migration")
+                logger.LogError(ex, "An error occured during migration");
             }
             await host.RunAsync();
         }
@@ -34,7 +34,7 @@ namespace API
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
-                {
+                { 
                     webBuilder.UseStartup<Startup>();
                 });
     }
