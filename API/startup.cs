@@ -76,22 +76,18 @@ namespace API
             .AllowCredentials()
             .WithOrigins("https://localhost:4200"));
             
-            app.UseAuthentication();
-
-            //   // global cors policy
-            // app.UseCors(x => x
-            //     .AllowAnyMethod()
-            //     .AllowAnyHeader()
-            //     .SetIsOriginAllowed(origin => true) // allow any origin
-            //     .AllowCredentials()); // allow credentials
-            
+            app.UseAuthentication();         
             app.UseAuthorization();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
  
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<PresenseHub>("hubs/presence");
                 endpoints.MapHub<MessageHub>("hubs/message");
+                endpoints.MapFallbackToController("Index", "Fallback");
+                
             });
         }
     }
